@@ -15,23 +15,24 @@ tr_elements = doc.xpath('//tr')
 col=[]
 i=5
 #For each row, store each first element (header) and an empty list
-print(type(tr_elements[5].text_content()))
-for t in tr_elements[5]:
+#print(type(tr_elements[5].text_content()))
+#tr_elements=iter(tr_elements[5])
+for t in tr_elements:
 
     #i+=1
-    print(t)
+    #print(t)
     name=(str(t.text_content().replace(" ","")).replace("\n",""))
     if name=="Status":
         print("YES")
-        #print(tr_elements.index(t))
+        print((tr_elements).next())
         #print(tr_elements[(tr_elements.index(t))+1])
 
     print(name)
-    col.append((str(name).replace(" ","")).replace("\n",""))
-if "Status" in col:
+    #col.append((str(name).replace(" ","")).replace("\n",""))
+"""if "Status" in col:
     if col[col.index("Status")+1]=="RESOLVED":
         print("Write in not Reassigned")
 
     else:
         print("Write in Assigned")
-#print(col)
+#print(col)"""
