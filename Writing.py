@@ -17,16 +17,20 @@ def updating_to_xlsx(File_Name,num,Flag,BugId):
     if Flag ==1:
         if (BugId != sheet.cell(row=(num-1),column=1).value) :
             sheet.cell(row=num,column=Flag).value=BugId
-
+            wb.save(File_Name)
+            return (+1)
 
         else:
-            pass
+            wb.save(File_Name)
+            return (0)
     elif Flag == 2:
         if (BugId != sheet.cell(row=(num-1),column=2).value) :
             sheet.cell(row=num,column=Flag).value=BugId
-
+            wb.save(File_Name)
+            return (+1)
 
         else:
-            pass
+            wb.save(File_Name)
+            return (0)
 
     wb.save(File_Name)
