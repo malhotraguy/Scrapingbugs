@@ -15,7 +15,7 @@ tr_elements = doc.xpath('//tr')
 col=[]
 i=5
 #For each row, store each first element (header) and an empty list
-print(type(tr_elements[5].text_content()))
+#12print(type(tr_elements[5].text_content()))
 for t in tr_elements[5]:
 
     #i+=1
