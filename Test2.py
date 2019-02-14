@@ -1,3 +1,5 @@
+from datetime import datetime
+startTime = datetime.now()
 import requests
 import lxml.html as lh
 from fake_useragent import UserAgent
@@ -22,7 +24,7 @@ new_xlsx("Component.xlsx")
 component_row=2
 
 
-for BugId in range(214000,214020):
+for BugId in range(214000,353000):
     #BugId=214019
     url='https://bugs.eclipse.org/bugs/show_activity.cgi?id='+str(BugId)
     #Create a handle, page, to handle the contents of the website
@@ -67,7 +69,7 @@ for BugId in range(214000,214020):
                 print("Write in status NotReassigned(!resolved)",BugId)
 
                 status_row += updating_to_xlsx("Status.xlsx", status_row, 2, BugId)
-               
+
         elif "severity" in col:
             if (not(col[col.index("severity") + 1].isspace()) and (col[col.index("severity") + 1].isspace())!= "--" ):
                 print("Write in severity Reassigned",BugId)
@@ -134,6 +136,8 @@ for BugId in range(214000,214020):
 
 
         col = []
+
+print ("Script took=",datetime.now() - startTime,"seconds" )
 
 
 
