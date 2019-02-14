@@ -23,7 +23,7 @@ component_row=2
 
 
 for BugId in range(214000,214020):
-    #print(BugId)
+    #BugId=214019
     url='https://bugs.eclipse.org/bugs/show_activity.cgi?id='+str(BugId)
     #Create a handle, page, to handle the contents of the website
     page = requests.get(url,headers=hdr)
@@ -66,7 +66,7 @@ for BugId in range(214000,214020):
                 updating_to_xlsx("Status.xlsx", status_row, 2, BugId)
                 status_row += 1
         elif "severity" in col:
-            if (col[col.index("severity")+1].isalnum()):
+            if (not(col[col.index("severity") + 1].isspace()) and (col[col.index("severity") + 1].isspace())!= "--" ):
                 print("Write in severity Reassigned",BugId)
                 updating_to_xlsx("Severity.xlsx",severity_row,1,BugId)
                 severity_row +=1
@@ -76,17 +76,19 @@ for BugId in range(214000,214020):
                 severity_row += 1
 
         elif "version" in col:
-            if (col[col.index("version") + 1].isalnum()):
+            if (not(col[col.index("version") + 1].isspace()) and (col[col.index("version") + 1].isspace())!= "--" ):
+
                 print("Write in version Reassigned",BugId)
                 updating_to_xlsx("Version.xlsx",version_row,1,BugId)
                 version_row +=1
             else:
+
                 print("Write in version NotReassigned",BugId)
                 updating_to_xlsx("Version.xlsx", version_row, 2, BugId)
                 version_row += 1
 
         elif "product"in col:
-            if (col[col.index("product") + 1].isalnum()):
+            if (not(col[col.index("product") + 1].isspace()) and (col[col.index("product") + 1].isspace())!= "--" ):
                 print("Write in product Reassigned",BugId)
                 updating_to_xlsx("Product.xlsx",product_row,1,BugId)
                 product_row +=1
@@ -96,7 +98,7 @@ for BugId in range(214000,214020):
                 product_row += 1
 
         elif "os" in col:
-            if (col[col.index("os") + 1].isalnum()):
+            if (not(col[col.index("os") + 1].isspace()) and (col[col.index("os") + 1].isspace())!= "--" ):
                 print("Write in os Reassigned",BugId)
                 updating_to_xlsx("Os.xlsx",os_row,1,BugId)
                 os_row +=1
@@ -106,17 +108,19 @@ for BugId in range(214000,214020):
                 os_row += 1
 
         elif "priority" in col:
-            if (col[col.index("priority") + 1].isalnum()):
+            if (not(col[col.index("priority") + 1].isspace()) and (col[col.index("priority") + 1].isspace())!= "--" ):
                 print("Write in priority Reassigned",BugId)
                 updating_to_xlsx("Priority.xlsx",priority_row,1,BugId)
                 priority_row +=1
+
             else:
                 print("Write in priority NotReassigned",BugId)
                 updating_to_xlsx("Priority.xlsx", priority_row, 1, BugId)
                 priority_row += 1
 
+
         elif "component" in col:
-            if (col[col.index("component") + 1].isalnum()):
+            if (not(col[col.index("component") + 1].isspace()) and (col[col.index("component") + 1].isspace())!= "--" ):
                 print("Write in component Reassigned",BugId)
                 updating_to_xlsx("Component.xlsx",component_row,1,BugId)
                 component_row +=1
