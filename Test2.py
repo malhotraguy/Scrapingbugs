@@ -54,20 +54,20 @@ for BugId in range(214000,214020):
                 if col[col.index("status")+2] == "reopen":
 
                     print("Write in status Reassigned",BugId)
-                    print(status_row)
+
                     status_row +=updating_to_xlsx("Status.xlsx",status_row,1,BugId)
-                    print(status_row)
+
                 else:
 
                     print("Write in status NotReassigned(!reopen)",BugId)
-                    print(status_row)
+
                     status_row +=updating_to_xlsx("Status.xlsx", status_row, 2, BugId)
-                    print(status_row)
+
             else:
                 print("Write in status NotReassigned(!resolved)",BugId)
-                print(status_row)
+
                 status_row += updating_to_xlsx("Status.xlsx", status_row, 2, BugId)
-                print(status_row)
+               
         elif "severity" in col:
             if (not(col[col.index("severity") + 1].isspace()) and (col[col.index("severity") + 1].isspace())!= "--" ):
                 print("Write in severity Reassigned",BugId)
