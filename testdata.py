@@ -42,8 +42,8 @@ for BugId in range(214019,214020):
 
     # For each row, store each first element (header) and an empty list
     # print(type(tr_elements[5].text_content()))
-    [col.append((t.text_content().replace(" ","")).replace("\n","")) for t in tr_elements ]
-
+    [col.append((t.text_content().replace(" ","")).replace("\n","").lower()) for t in tr_elements ]
+    print(col)
     if "status" in col:
         if col[col.index("status") + 1].lower() == "resolved":
             if col[col.index("status") + 2] == "reopen":
@@ -63,7 +63,7 @@ for BugId in range(214019,214020):
 
             status_row += updating_to_xlsx("Status.xlsx", status_row, 2, BugId)
 
-    elif "severity" in col:
+    if "severity" in col:
         if (not (col[col.index("severity") + 1].isspace()) and (col[col.index("severity") + 1].isspace()) != "--"):
             print("Write in severity Reassigned", BugId)
 
@@ -73,7 +73,7 @@ for BugId in range(214019,214020):
 
             severity_row += updating_to_xlsx("Severity.xlsx", severity_row, 2, BugId)
 
-    elif "version" in col:
+    if "version" in col:
         if (not (col[col.index("version") + 1].isspace()) and (col[col.index("version") + 1].isspace()) != "--"):
 
             print("Write in version Reassigned", BugId)
@@ -85,7 +85,7 @@ for BugId in range(214019,214020):
 
             version_row += updating_to_xlsx("Version.xlsx", version_row, 2, BugId)
 
-    elif "product" in col:
+    if "product" in col:
         if (not (col[col.index("product") + 1].isspace()) and (col[col.index("product") + 1].isspace()) != "--"):
             print("Write in product Reassigned", BugId)
 
@@ -95,7 +95,7 @@ for BugId in range(214019,214020):
 
             product_row += updating_to_xlsx("Product.xlsx", product_row, 2, BugId)
 
-    elif "os" in col:
+    if "os" in col:
         if (not (col[col.index("os") + 1].isspace()) and (col[col.index("os") + 1].isspace()) != "--"):
             print("Write in os Reassigned", BugId)
 
@@ -117,7 +117,7 @@ for BugId in range(214019,214020):
             priority_row += updating_to_xlsx("Priority.xlsx", priority_row, 1, BugId)
 
 
-    elif "component" in col:
+    if "component" in col:
         if (not (col[col.index("component") + 1].isspace()) and (
         col[col.index("component") + 1].isspace()) != "--"):
             print("Write in component Reassigned", BugId)
