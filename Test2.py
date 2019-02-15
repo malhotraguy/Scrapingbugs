@@ -1,3 +1,5 @@
+import time
+start = time.time()
 import requests
 import lxml.html as lh
 from fake_useragent import UserAgent
@@ -22,7 +24,7 @@ new_xlsx("Component.xlsx")
 component_row=2
 
 
-for BugId in range(214000,3530001):
+for BugId in range(214019,214020):
     #BugId=214019
     url='https://bugs.eclipse.org/bugs/show_activity.cgi?id='+str(BugId)
     #Create a handle, page, to handle the contents of the website
@@ -135,5 +137,6 @@ for BugId in range(214000,3530001):
 
         col = []
 
-
+end = time.time()
+print("Script took ",end - start)
 
