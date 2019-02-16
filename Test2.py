@@ -24,7 +24,7 @@ new_xlsx("Component.xlsx")
 component_row=2
 
 
-for BugId in range(214019,214020):
+for BugId in range(214019,214031):
     #BugId=214019
     url='https://bugs.eclipse.org/bugs/show_activity.cgi?id='+str(BugId)
     #Create a handle, page, to handle the contents of the website
@@ -48,12 +48,12 @@ for BugId in range(214019,214020):
             name=(str(t.text_content().replace(" ","")).replace("\n",""))
 
             #print(name,type(name),name.isalnum())
-            col.append(((str(name).lower()).replace(" ","")).replace("\n",""))
-        #print(col)
-
+            col.append(str(name).lower())
+        print(col)
+        TO_Check=None
         if "status" in col:
-            if col[col.index("status")+1].lower()=="resolved":
-                if col[col.index("status")+2] == "reopen":
+            if col[col.index("status")+1].lower()=="resolved" or "fixed":
+                if col[col.index("status")+2] == "reopened":
 
                     print("Write in status Reassigned",BugId)
 
@@ -61,7 +61,7 @@ for BugId in range(214019,214020):
 
                 else:
 
-                    print("Write in status NotReassigned(!reopen)",BugId)
+                    print("Write in status NotReassigned(!reopened)",BugId)
 
                     status_row +=updating_to_xlsx("Status.xlsx", status_row, 2, BugId)
 
