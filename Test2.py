@@ -50,7 +50,7 @@ for BugId in range(214019,214031):
             #print(name,type(name),name.isalnum())
             col.append(str(name).lower())
         print(col)
-        TO_Check=None
+
         if "status" in col:
             if col[col.index("status")+1].lower()=="resolved" or "fixed":
                 if col[col.index("status")+2] == "reopened":

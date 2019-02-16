@@ -26,7 +26,7 @@ priority_row = 2
 new_xlsx("Component.xlsx")
 component_row = 2
 
-for BugId in range(214019, 214031):
+for BugId in range(214019, 214120):
     # BugId=214019
     url = 'https://bugs.eclipse.org/bugs/show_activity.cgi?id=' + str(BugId)
     # Create a handle, page, to handle the contents of the website
@@ -52,19 +52,21 @@ for BugId in range(214019, 214031):
         if "status" in col:
             #print(col)
             if col[col.index("status") + 2].lower() == "resolved":
-                print(col[col.index("status") + 2].lower() )
+                #print(col[col.index("status") + 2].lower() )
                 Status_seen= True
         if "resolution" in col:
             if (Status_seen):
                 if col[col.index("resolution") + 2].lower() == "fixed":
-                    print(col[col.index("resolution") + 2].lower())
+                    print("Resolution=",col[col.index("resolution") + 2].lower())
                     Status_seen = False
                     Considered_Bug = True
                     Resolution_seen = True
                     col = []
                     tr_elements.reverse()
                     break
+    status_flag=0
     if (Considered_Bug):
+        print(BugId,"is Considered")
         # For each row, store each first element (header) and an empty list
         # print(type(tr_elements[5].text_content()))
         for j in range(1, len(tr_elements)):
@@ -83,18 +85,21 @@ for BugId in range(214019, 214031):
 
                         print("Write in status Reassigned", BugId)
 
-                        status_row += updating_to_xlsx("Status.xlsx", status_row, 1, BugId)
+                        status_row += updating_to_xlsx("Status.xlsx", status_row, 1, BugId,status_flag)
+                        status_flag=1
 
                     else:
 
                         print("Write in status NotReassigned(!reopened)", BugId)
 
-                        status_row += updating_to_xlsx("Status.xlsx", status_row, 2, BugId)
+                        status_row += updating_to_xlsx("Status.xlsx", status_row, 2, BugId,status_flag)
+                        status_flag=2
 
                 else:
                     print("Write in status NotReassigned(!resolved)", BugId)
 
-                    status_row += updating_to_xlsx("Status.xlsx", status_row, 2, BugId)
+                    status_row += updating_to_xlsx("Status.xlsx", status_row, 2, BugId,status_flag)
+                    status_flag=2
 
             elif "severity" in col:
                 if (not (col[col.index("severity") + 1].isspace()) and (col[col.index("severity") + 1].isspace()) != "--"):
