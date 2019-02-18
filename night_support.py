@@ -27,7 +27,7 @@ new_xlsx("Component.xlsx")
 component_row = 2
 new_xlsx("Assignee.xlsx")
 assignee_row = 2
-for BugId in range(214019, 214370):
+for BugId in range(214000,353001):
     # BugId=214019
     url = 'https://bugs.eclipse.org/bugs/show_activity.cgi?id=' + str(BugId)
     # Create a handle, page, to handle the contents of the website
