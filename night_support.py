@@ -25,8 +25,9 @@ new_xlsx("Priority.xlsx")
 priority_row = 2
 new_xlsx("Component.xlsx")
 component_row = 2
-
-for BugId in range(214019, 214120):
+new_xlsx("Assignee.xlsx")
+assignee_row = 2
+for BugId in range(214019, 214370):
     # BugId=214019
     url = 'https://bugs.eclipse.org/bugs/show_activity.cgi?id=' + str(BugId)
     # Create a handle, page, to handle the contents of the website
@@ -156,8 +157,7 @@ for BugId in range(214019, 214120):
 
 
             elif "component" in col:
-                if (not (col[col.index("component") + 1].isspace()) and (
-                col[col.index("component") + 1].isspace()) != "--"):
+                if (not (col[col.index("component") + 1].isspace()) and (col[col.index("component") + 1].isspace()) != "--"):
                     print("Write in component Reassigned", BugId)
 
                     component_row += updating_to_xlsx("Component.xlsx", component_row, 1, BugId)
@@ -165,7 +165,15 @@ for BugId in range(214019, 214120):
                     print("Write in component NotReassigned", BugId)
 
                     component_row += updating_to_xlsx("Component.xlsx", component_row, 2, BugId)
+            elif "assignee" in col:
+                if (not (col[col.index("assignee") + 1].isspace()) and (col[col.index("assignee") + 1].isspace()) != "--"):
+                    print("Write in assignee Reassigned", BugId)
 
+                    assignee_row += updating_to_xlsx("Assignee.xlsx", assignee_row, 1, BugId)
+                else:
+                    print("Write in assignee NotReassigned", BugId)
+
+                    assignee_row += updating_to_xlsx("Assignee.xlsx", assignee_row, 2, BugId)
             col = []
 
 end = time.time()

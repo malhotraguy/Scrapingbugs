@@ -22,6 +22,8 @@ new_xlsx("Priority.xlsx")
 priority_row=2
 new_xlsx("Component.xlsx")
 component_row=2
+new_xlsx("Assignee.xlsx")
+assignee_row=2
 
 
 for BugId in range(214019,214031):
@@ -133,6 +135,15 @@ for BugId in range(214019,214031):
                 print("Write in component NotReassigned",BugId)
 
                 component_row +=updating_to_xlsx("Component.xlsx", component_row, 2, BugId)
+        elif "assignee" in col:
+            if (not(col[col.index("assignee") + 1].isspace()) and (col[col.index("assignee") + 1].isspace())!= "--" ):
+                print("Write in assignee Reassigned",BugId)
+
+                assignee_row +=updating_to_xlsx("Assignee.xlsx",assignee_row,1,BugId)
+            else:
+                print("Write in assignee NotReassigned",BugId)
+
+                assignee_row +=updating_to_xlsx("Assignee.xlsx", assignee_row, 2, BugId)
 
 
         col = []
