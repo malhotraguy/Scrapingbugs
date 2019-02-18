@@ -42,7 +42,11 @@ for BugId in range(214019,214020):
 
     # For each row, store each first element (header) and an empty list
     # print(type(tr_elements[5].text_content()))
-    [col.append((t.text_content().replace(" ","")).replace("\n","").lower()) for t in tr_elements ]
+    tr_elements.reverse()
+
+    #tr_elements.reverse()
+
+    [col.append((t.text_content().replace(" ","")).replace("\n","").lower()) for t in  tr_elements]
     print(col)
     if "status" in col:
         if col[col.index("status") + 1].lower() == "resolved":
